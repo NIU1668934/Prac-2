@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
-#define N 10
+#include <math.h>
+#define N 5
+
+
 
 float Mat[N][N];
 float MatDD[N][N];
@@ -10,6 +13,7 @@ float V3[N];
 float V4[N];
 float V5[N];
 float V6[N];
+float V7[N];
 
 
 void InitData(){
@@ -35,44 +39,28 @@ for( i = 0; i < N; i++ ){
 
 
 
-
+//EXERICICI 1
 void PrintVect(float vect[N], int a, int b ){
 int i;
 i=0;
-while(a>=0 && i<b){
+for( i = 0; i < b; i++ ){
 printf ("%f\n", vect[i+a]);
-i=i+1;
 }
 }
 
 
 
-
-
-
-
-
-
+//EXERICICI 2
 
 void PrintRow( float mat[N][N], int c, int a, int b ){
-int i;
-i=0;
-while(a>=0 && i<b){
-printf ("%f\n", mat[i+a][i]);
-i=i+1;
+int i,j;
+for( i = 0; i < b; i++ ){
+printf ("%f\n", mat[i+a][c]);
 }
 }
 
 
-
-
-
-
-
-
-
-
-
+//EXERICICI 3
 
 void MultEscalar( float vect[N], float vectres[N], float alfa ){
 int i;
@@ -83,30 +71,38 @@ printf ("%f\n", V4[i]);
 }
 
 
+//EXERICICI 4
 
 float Scalar( float vect1[N], float vqct2[N] ){
 int i;
 for(i=0;i<N;i++){
-V5[i]=V1[i]*V2[i];
-printf ("%f\n", V5[i]);
+printf ("%f\n", V1[i]*V3[i]);
 }
 }
 
 
-
+//EXERICICI 5
 float Magnitude( float vect[N] ){
-int i;
+int i,a,b,mag;
+a=V1[0]*V1[0];
+b=V1[1]*V1[1];
+mag= (a+b);
+printf ("%lf\n", sqrt(mag));
+return(0);
+}
+
+
+//EXERICICI 6*************************
+int Ortogonal( float vect[N] ){
+int suma,i;
 for(i=0;i<N;i++){
-V6[i]=V1[i]*V1[i];
-printf ("%f\n", V6[i]);
+suma=suma+(vect[i]);
 }
 }
 
 
 
-
-
-
+//MAIN
 int main(){
 InitData();
 int a,b,c;
@@ -118,11 +114,12 @@ printf("numel: ");
 scanf("%d", &b);
 PrintVect(V1,a,b);
 printf ("---------------\n");
-MultEscalar(V1,V4,2.0);
-printf ("---------------\n");
 PrintRow(Mat,c,a,b);
 printf ("---------------\n");
-Scalar( V1, V2);
+MultEscalar(V1,V4,2.0);
+printf ("---------------\n");
+Scalar(V1,V3);
 printf ("---------------\n");
 Magnitude(V1);
+
 }
